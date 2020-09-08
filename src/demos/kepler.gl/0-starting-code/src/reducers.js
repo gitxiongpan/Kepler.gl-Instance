@@ -18,21 +18,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import {combineReducers} from 'redux';
-import {handleActions} from 'redux-actions';
-import {routerReducer} from 'react-router-redux';
+import { combineReducers } from "redux";
+import { handleActions } from "redux-actions";
+import { routerReducer } from "react-router-redux";
+import keplerGlReducer from "kepler.gl/reducers";
 
 // INITIAL_APP_STATE
 const initialAppState = {
-  appName: 'example',
-  loaded: false
+  appName: "example",
+  loaded: false,
 };
 
 const reducers = combineReducers({
-  app: handleActions({
-    // you can put your app reducer here
-  }, initialAppState),
-  routing: routerReducer
+  // mount keplerGl reducer
+  keplerGl: keplerGlReducer,
+  app: handleActions(
+    {
+      // you can put your app reducer here
+    },
+    initialAppState
+  ),
+  routing: routerReducer,
 });
 
 export default reducers;
